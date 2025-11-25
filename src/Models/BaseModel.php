@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Models;
+namespace Sds\Workshop\Models;
 
 abstract class BaseModel
 {

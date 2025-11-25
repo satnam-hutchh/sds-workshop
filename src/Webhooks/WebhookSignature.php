@@ -1,8 +1,8 @@
 <?php
 
-namespace MyApp\Webhooks;
+namespace Sds\Workshop\Webhooks;
 
-use MyApp\Webhooks\WebhookException;
+use Sds\Workshop\Webhooks\WebhookException;
 
 class WebhookSignature
 {

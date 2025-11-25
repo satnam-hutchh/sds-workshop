@@ -10,6 +10,21 @@ class TokenService
 {
     public function __construct(private ApiClient $client) {}
 
+    public function getAuthorizeUrl(): string
+    {
+        return rtrim($this->client->baseUrl, '/') . '/' . $this->client->version . '/oauth/authorize';
+    }
+
+    public function authUrl(string $redirectUri, array $scopes = null): string
+    {
+        return AuthUrlBuilder::build(
+            clientId    : $this->client->auth->clientId,
+            redirectUri : $redirectUri,
+            scopes      : $scopes,
+            baseAuthUrl : $this->getAuthorizeUrl()
+        );
+    }
+
     public function authorizationCode(string $code, string $redirectUri): Token
     {
         $req = RequestBuilder::make('POST', '/oauth/token')

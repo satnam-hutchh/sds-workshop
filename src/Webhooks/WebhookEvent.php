@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Webhooks;
+namespace Sds\Workshop\Webhooks;
 
 class WebhookEvent
 {

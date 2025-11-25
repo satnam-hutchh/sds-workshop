@@ -1,10 +1,10 @@
 <?php
 
-namespace MyApp\Webhooks;
+namespace Sds\Workshop\Webhooks;
 
-use MyApp\Webhooks\WebhookSignature;
-use MyApp\Webhooks\WebhookEvent;
-use MyApp\Webhooks\WebhookException;
+use Sds\Workshop\Webhooks\WebhookSignature;
+use Sds\Workshop\Webhooks\WebhookEvent;
+use Sds\Workshop\Webhooks\WebhookException;
 
 class WebhookProcessor
 {

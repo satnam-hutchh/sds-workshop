@@ -1,10 +1,10 @@
 <?php
 
-namespace MyApp\Services;
+namespace Sds\Workshop\Services;
 
-use MyApp\Http\ApiClient;
-use MyApp\Http\RequestBuilder;
-use MyApp\Models\User;
+use Sds\Workshop\Http\ApiClient;
+use Sds\Workshop\Http\RequestBuilder;
+use Sds\Workshop\Models\User;
 
 class UserService
 {

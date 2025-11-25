@@ -1,20 +1,32 @@
 <?php
 
-namespace MyApp\Http;
+namespace Sds\Workshop\Http;
 
 use GuzzleHttp\Client;
-use MyApp\Http\ApiException;
-use MyApp\Http\RequestBuilder;
-use MyApp\Http\ResponseBuilder;
+use GuzzleHttp\HandlerStack;
+use Sds\Workshop\Http\ApiException;
+use Sds\Workshop\Http\RequestBuilder;
+use Sds\Workshop\Http\ResponseBuilder;
+use Sds\Workshop\Config;
+use Sds\WorkshopLaravel\Http\Middleware\ApiVersionMiddleware;
 
 class ApiClient
 {
     protected Client $http;
+    public string $baseUrl;
+    public string $version;
 
     public function __construct(public Authentication $auth, array $config = [])
     {
+        $this->baseUrl  = $config['base_uri'] ?? Config::API_BASE; // NEW
+        $this->version  = $config['version'] ?? Config::VERSION;
+
+        $stack = HandlerStack::create();
+        $stack->push(new ApiVersionMiddleware($version));
+
         $this->http = new Client([
-            'base_uri' => $config['base_uri'] ?? \MyApp\Config::API_BASE,
+            'base_uri' => $this->baseUrl,
+            'handler'  => $stack,
             'timeout'  => $config['timeout'] ?? 10,
         ]);
     }

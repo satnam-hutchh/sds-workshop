@@ -1,5 +1,5 @@
 <?php
 
-namespace MyApp\Webhooks;
+namespace Sds\Workshop\Webhooks;
 
 class WebhookException extends \Exception {}

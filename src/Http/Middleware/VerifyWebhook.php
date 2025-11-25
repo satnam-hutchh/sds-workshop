@@ -1,17 +1,17 @@
 <?php
 
-namespace MyAppLaravel\Http\Middleware;
+namespace Sds\WorkshopLaravel\Http\Middleware;
 
 use Closure;
-use MyApp\Webhooks\WebhookProcessor;
+use Sds\Workshop\Webhooks\WebhookProcessor;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifyMyAppWebhook
+class VerifyWebhook
 {
     public function handle($request, Closure $next): Response
     {
         $payload   = $request->getContent();
-        $signature = $request->header('MyApp-Signature');
+        $signature = $request->header('Webhook-Signature');
 
         $processor = new WebhookProcessor(
             config('myapp.webhook_secret')

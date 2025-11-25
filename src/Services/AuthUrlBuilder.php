@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Services;
+namespace Sds\Workshop\Services;
 
 class AuthUrlBuilder
 {
@@ -9,7 +9,7 @@ class AuthUrlBuilder
         string $redirectUri,
         array $scopes = [],
         string $state = null,
-        string $baseAuthUrl = 'https://api.myapp.com/oauth/authorize'
+        string $baseAuthUrl
     ): string {
         $params = [
             'response_type' => 'code',
