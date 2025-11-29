@@ -2,7 +2,7 @@
 
 namespace Sds\Workshop\Models;
 
-class Token extends BaseModel
+class Token extends abstractModel
 {
     public string $access_token;
     public ?string $refresh_token = null;

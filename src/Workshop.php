@@ -4,12 +4,13 @@ namespace Sds\Workshop;
 
 use Sds\Workshop\Http\ApiClient;
 use Sds\Workshop\Http\Authentication;
-use Sds\Workshop\Services\TokenService;
+use Sds\Workshop\Services;
 
 class Workshop
 {
     public ApiClient $client;
-    public TokenService $tokens;
+    public Services\TokenService $tokens;
+    public Services\VehicleService $vehicle;
 
     public function __construct(
         string $clientId,
@@ -17,8 +18,9 @@ class Workshop
         array $config = []
     )
     {
-        $auth = new Authentication($apiKey);
+        $auth = new Authentication($clientId, $clientSecret);
         $this->client = new ApiClient($auth, $config);
-        $this->tokens = new TokenService($this->client);
+        $this->tokens = new Services\TokenService($this->client);
+        $this->vehicle = new Services\VehicleService($this->client);
     }
 }

@@ -5,15 +5,15 @@ namespace Sds\Workshop\Services;
 use Sds\Workshop\Http\ApiClient;
 use Sds\Workshop\Builders\RequestBuilder;
 use Sds\Workshop\Models\User;
+use Sds\Workshop\Builders\Vehicle;
 
-class UserService
+class VehicleService
 {
     public function __construct(private ApiClient $client) {}
 
     public function create(array $payload): User
     {
-        $req = RequestBuilder::make('POST', '/users')
-            ->withBody($payload);
+        $req = (new Vehicle\CreateRequest)->withBody($payload);
 
         return $client
             ->send($req)

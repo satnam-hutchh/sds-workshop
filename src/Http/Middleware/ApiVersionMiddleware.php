@@ -1,12 +1,12 @@
 <?php
 
-namespace Sds\WorkshopLaravel\Http\Middleware;
+namespace Sds\Workshop\Http\Middleware;
 
 use Psr\Http\Message\RequestInterface;
 
 class ApiVersionMiddleware
 {
-    public function __construct(protected string $version = 'v1') {}
+    public function __construct(protected ?string $version = null) {}
 
     public function __invoke(callable $handler)
     {
@@ -16,7 +16,7 @@ class ApiVersionMiddleware
             $path = ltrim($uri->getPath(), '/');
 
             // Only add version if not already present
-            if (!str_starts_with($path, $this->version . '/')) {
+            if (!is_null($this->version) && !str_starts_with($path, $this->version . '/')) {
                 $uri = $uri->withPath("/{$this->version}/" . $path);
                 $request = $request->withUri($uri);
             }

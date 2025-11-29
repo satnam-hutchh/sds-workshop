@@ -2,6 +2,9 @@
 
 namespace Sds\Workshop\Http;
 
+use Sds\Workshop\Builders\RequestBuilder;
+use Sds\Workshop\Builders\ResponseBuilder;
+
 class Authentication
 {
     public ?string $accessToken = null;
@@ -16,7 +19,14 @@ class Authentication
         $this->accessToken = $token;
     }
 
-    public function getAuthHeaders(): array
+    public function for(RequestBuilder $request): static
+    {
+        $this->isAuthRequest = $request->authRequest;
+        return $this;
+    }
+
+
+    public function getHeaders(): array
     {
         if ($this->accessToken) {
             return [
@@ -29,5 +39,7 @@ class Authentication
             'Client-Id'     => $this->clientId,
             'Client-Secret' => $this->clientSecret,
         ];
+
+        throw new \Sds\Workshop\Exceptions\MissingBearerTokenException();
     }
 }

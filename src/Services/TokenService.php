@@ -3,7 +3,7 @@
 namespace Sds\Workshop\Services;
 
 use Sds\Workshop\Http\ApiClient;
-use Sds\Workshop\Http\RequestBuilder;
+use Sds\Workshop\Builders\RequestBuilder;
 use Sds\Workshop\Models\Token;
 
 class TokenService
